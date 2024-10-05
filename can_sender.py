@@ -1,3 +1,5 @@
+from time import sleep
+
 import can
 
 bus = can.Bus('ws://localhost:54701/',
@@ -7,10 +9,15 @@ bus = can.Bus('ws://localhost:54701/',
 
 def send_message():
     # Send messages
-    msg = can.Message(arbitration_id=0x12F, data=[1, 2, 3, 4, 5, 6, 7, 8])
+    msgs = [can.Message(arbitration_id=0x12F, data=[2, 4, 3, 4, 5, 6, 7, 1]),
+            can.Message(arbitration_id=0x130, data=[1, 2, 3, 4, 5, 6, 7, 8]),
+            can.Message(arbitration_id=0x38, data=[1, 2, 3, 4, 5, 6, 7, 8])
+            ]
 
     try:
-        bus.send(msg)
+        for msg in msgs:
+            bus.send(msg)
+            sleep(1)
         print(f"Message sent on {bus.channel_info}")
     except can.CanError:
         print("Message NOT sent")
