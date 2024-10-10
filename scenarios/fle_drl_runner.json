@@ -1,0 +1,158 @@
+{
+  "name": "Fle drl runner",
+  "description": "DRL runs back and forth",
+  "repeats": -1,
+  "messages": [
+    {
+      "info": "flel diag on",
+      "data": "00 00 00 04 00 01 f4 43 10 03",
+      "delay": 0
+    },
+    {
+      "info": "flel04 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 04",
+      "delay": 100
+    },
+    {
+      "info": "flel05 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "flel04 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 04",
+      "delay": 50
+    },
+    {
+      "info": "flel06 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "flel05 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "fler diag on",
+      "data": "00 00 00 04 00 01 f4 44 10 03",
+      "delay": 0
+    },
+    {
+      "info": "fler06 on",
+      "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "flel06 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "fler05 on",
+      "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "fler06 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "fler04 on",
+      "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 04",
+      "delay": 50
+    },
+    {
+      "info": "fler05 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 05",
+      "delay": 100
+    },
+
+
+
+
+    {
+      "info": "fler05 on",
+      "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "fler04 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 04",
+      "delay": 50
+    },
+    {
+      "info": "fler06 on",
+      "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "fler05 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "flel06 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "fler06 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "flel05 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 05",
+      "delay": 50
+    },
+    {
+      "info": "flel06 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 06",
+      "delay": 50
+    },
+    {
+      "info": "flel04 on",
+      "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 04",
+      "delay": 50
+    },
+    {
+      "info": "flel05 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 05",
+      "delay": 50
+    }
+  ],
+  "messages_stop": [
+    {
+      "info": "flel04 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 04",
+      "delay": 0
+    },
+    {
+      "info": "flel05 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 05",
+      "delay": 0
+    },
+    {
+      "info": "flel06 off",
+      "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 06",
+      "delay": 0
+    },
+    {
+      "info": "fler04 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 04",
+      "delay": 0
+    },
+    {
+      "info": "fler05 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 05",
+      "delay": 100
+    },
+    {
+      "info": "fler06 off",
+      "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 06",
+      "delay": 100
+    }
+  ]
+}
