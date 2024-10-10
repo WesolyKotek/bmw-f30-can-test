@@ -1,0 +1,96 @@
+{
+    "name": "Fle strobes",
+    "description": "Placeholder",
+    "repeats": -1,
+    "messages": [
+        {
+            "info": "flel diag on",
+            "data": "00 00 00 04 00 01 f4 43 10 03",
+            "delay": 0
+        },
+
+
+        {
+            "info": "flel02 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 02",
+            "delay": 50
+        },
+        {
+            "info": "flel02 off",
+            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
+            "delay": 50
+        },
+
+
+        {
+            "info": "flel03 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 03",
+            "delay": 50
+        },
+        {
+            "info": "flel03 off",
+            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 03",
+            "delay": 0
+        },
+
+
+
+
+
+
+
+
+        {
+            "info": "fler diag on",
+            "data": "00 00 00 04 00 01 f4 44 10 03",
+            "delay": 0
+        },
+        {
+            "info": "fler02 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 02",
+            "delay": 50
+        },
+
+        {
+            "info": "fler02 off",
+            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
+            "delay": 50
+        },
+
+        {
+            "info": "fler03 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 03",
+            "delay": 50
+        },
+        {
+            "info": "fler03 off",
+            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 03",
+            "delay": 50
+        }
+    ],
+
+    "messages_stop": [
+        {
+            "info": "flel02 off",
+            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
+            "delay": 0
+        },
+        {
+            "info": "flel03 off",
+            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
+            "delay": 0
+        },
+
+
+        {
+            "info": "fler02 off",
+            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
+            "delay": 0
+        },
+        {
+            "info": "fler03 off",
+            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
+            "delay": 0
+        }
+    ]
+}
