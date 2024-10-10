@@ -21,12 +21,12 @@ class UDSClient:
             print('Connection closed!')
 
     def send(self, message: str):
-        message_bytes = convert.str_to_b(message)
+        message_bytes = utils.str_to_b(message)
         self.sock.send(message_bytes)
         print(f'Send: {message}')
 
     def sendall(self, messages: list):
-        messages_bytes = b''.join(convert.str_to_b(message) for message in messages)
+        messages_bytes = b''.join(utils.str_to_b(message) for message in messages)
         self.sock.sendall(messages_bytes)
         print(f'Send group: {"\n".join(messages)}')
 
@@ -81,7 +81,7 @@ class UDSClient:
     @staticmethod
     def scan_for_adapters(ip_range=['192.168.16.100'], udp_port=6811, timeout=2):
         adapter_info = []
-        connection_message = convert.str_to_b('00 00 00 00 00 11')
+        connection_message = utils.str_to_b('00 00 00 00 00 11')
         for ip in ip_range:
             try:
                 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
