@@ -2,94 +2,103 @@
     "name": "Fle strobes",
     "description": "Placeholder",
     "repeats": -1,
+    "start_check_message": "fem20 проверка положения рычага",
+    "start_check_message_responses": [
+        {
+            "info":"high beam on",
+            "data": "00 00 00 04 00 01 f4 43 10 03"
+        },
+        {
+            "info":"high beam blink",
+            "data": "00 00 00 04 00 01 f4 43 10 03"
+        }
+    ],
+    "stop_check_message": "fem20 проверка положения рычага",
+    "stop_check_message_responses": [
+        {
+            "info":"high beam off",
+            "data": "00 00 00 04 00 01 f4 43 10 03"
+        }
+    ],
+    "start_stop_responses_timeout": 2000,
     "messages": [
         {
             "info": "flel diag on",
             "data": "00 00 00 04 00 01 f4 43 10 03",
             "delay": 0
         },
-
-
-        {
-            "info": "flel02 on",
-            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 02",
-            "delay": 50
-        },
-        {
-            "info": "flel02 off",
-            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
-            "delay": 50
-        },
-
-
-        {
-            "info": "flel03 on",
-            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 03",
-            "delay": 50
-        },
-        {
-            "info": "flel03 off",
-            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 03",
-            "delay": 0
-        },
-
-
-
-
-
-
-
-
         {
             "info": "fler diag on",
             "data": "00 00 00 04 00 01 f4 44 10 03",
             "delay": 0
         },
-        {
-            "info": "fler02 on",
-            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 02",
-            "delay": 50
-        },
+
 
         {
-            "info": "fler02 off",
-            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
-            "delay": 50
+            "info": "flel07 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 07",
+            "delay": 0
+        },
+        {
+            "info": "fler07 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 07",
+            "delay": 100
         },
 
+
         {
-            "info": "fler03 on",
-            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 03",
-            "delay": 50
+            "info": "flel01 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 01",
+            "delay": 100
         },
         {
-            "info": "fler03 off",
-            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 03",
-            "delay": 50
+            "info": "flel07 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 07",
+            "delay": 100
+        },
+        {
+            "info": "flel01 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 01",
+            "delay": 100
+        },
+        {
+            "info": "flel07 on",
+            "data": "00 00 00 07 00 01 f4 43 31 01 a5 43 07",
+            "delay": 100
+        },
+
+
+        {
+            "info": "fler01 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 01",
+            "delay": 100
+        },
+        {
+            "info": "fler07 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 07",
+            "delay": 100
+        },
+        {
+            "info": "fler01 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 01",
+            "delay": 100
+        },
+        {
+            "info": "fler07 on",
+            "data": "00 00 00 07 00 01 f4 44 31 01 a5 43 07",
+            "delay": 100
         }
     ],
 
     "messages_stop": [
         {
-            "info": "flel02 off",
-            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
+            "info": "flel off",
+            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 01",
             "delay": 0
         },
         {
-            "info": "flel03 off",
-            "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 02",
-            "delay": 0
-        },
-
-
-        {
-            "info": "fler02 off",
-            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
-            "delay": 0
-        },
-        {
-            "info": "fler03 off",
-            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 02",
+            "info": "fler off",
+            "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 01",
             "delay": 0
         }
     ]

@@ -6,7 +6,12 @@
     {
       "info": "flel diag on",
       "data": "00 00 00 04 00 01 f4 43 10 03",
-      "delay": 0
+      "delay": 50
+    },
+    {
+      "info": "fler diag on",
+      "data": "00 00 00 04 00 01 f4 44 10 03",
+      "delay": 50
     },
     {
       "info": "flel04 on",
@@ -32,11 +37,6 @@
       "info": "flel05 off",
       "data": "00 00 00 07 00 01 f4 43 31 02 a5 43 05",
       "delay": 50
-    },
-    {
-      "info": "fler diag on",
-      "data": "00 00 00 04 00 01 f4 44 10 03",
-      "delay": 0
     },
     {
       "info": "fler06 on",
@@ -68,8 +68,6 @@
       "data": "00 00 00 07 00 01 f4 44 31 02 a5 43 05",
       "delay": 100
     },
-
-
 
 
     {
