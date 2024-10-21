@@ -25,25 +25,49 @@ class Scenario:
         start_check_message = self.scenario['start_check_message']
         start_sequence = self.scenario['start_check_message_responses']
         stop_check_message = self.scenario['stop_check_message']
-        stop_check_sequence = self.scenario['stop_check_message_responses']
+        stop_sequence = self.scenario['stop_check_message_responses']
+        start_stop_check_message_interval = self.scenario.get('start_stop_check_message_interval', 1)
         start_stop_responses_timeout = self.scenario.get('start_stop_responses_timeout', 1)
 
-        if start_sequence:
-            await self.check_for_sequence(start_check_message, start_sequence,
-                                          stop_check_message, stop_check_sequence,
-                                          start_stop_responses_timeout)
-
-        repeat_count = 0
         while self.running:
-            repeat_count += 1
-            print(f'{repeat_count}/inf' if repeats == -1 else f'{repeat_count}/{repeats}')
+            if start_check_message and start_sequence:
+                print('Ищем стартовую последовательность...')
+                start_sequence_found = await self.check_for_sequence(start_check_message,
+                                                                     start_sequence,
+                                                                     start_stop_responses_timeout,
+                                                                     start_stop_check_message_interval)
 
-            await self.send_uds_message(messages)
+                if start_sequence_found:
+                    print('Стартовая последовательность найдена, выполняем сценарий.')
+                else:
+                    print('Прерывание')
+            else:
+                print('Стартовая последовательность не задана, переходим к выполнению сценария.')
 
-            if repeats != -1 and repeat_count >= repeats:
-                break
+            stop_sequence_task = None
+            if stop_check_message and stop_sequence:
+                stop_sequence_task = asyncio.create_task(
+                    self.check_for_sequence(stop_check_message,
+                                            stop_sequence,
+                                            start_stop_responses_timeout,
+                                            start_stop_check_message_interval)
+                )
 
-    async def send_uds_message(self, messages):
+            repeat_count = 0
+            while self.running:
+                repeat_count += 1
+                print(f'{repeat_count}/inf' if repeats == -1 else f'{repeat_count}/{repeats}')
+
+                self.send_uds_message(messages)
+
+                if stop_sequence_task and stop_sequence_task.done() and stop_sequence_task.result():
+                    print('Конечная последовательность найдена, останавливаем сценарий.')
+                    break
+
+                if repeats != -1 and repeat_count >= repeats:
+                    break
+
+    def send_uds_message(self, messages):
         for message in messages:
             if not self.running:
                 print('Scenario stopped')
@@ -53,45 +77,54 @@ class Scenario:
             self.uds_client.send(data)
             time.sleep(delay)
 
-    async def check_for_sequence(self,
-                                 start_check_message, start_sequence,
-                                 stop_check_message, stop_sequence,
-                                 start_stop_responses_timeout):
+    async def check_for_sequence(self, check_message, sequence, responses_timeout, check_message_interval):
+        if not check_message:
+            return True
 
         received_packets = []
-        start_time = time.time()
-        while not self.stop_event.is_set():
+        original_sequence = sequence.copy()
+        sequence_copy = sequence.copy()
+
+        first_correct_packet = False
+        start_time = None
+
+        while self.running:
             try:
-                packet = await asyncio.wait_for(self.uds_client.receive(),
-                                                timeout=start_stop_responses_timeout)
+                self.uds_client.send(check_message)
+
+                packet = await self.uds_client.receive()
 
                 if packet:
-                    print(f"Получен пакет: {packet}")
+                    for response in packet:
+                        if response == sequence_copy[0]:
+                            received_packets.append(response)
+                            sequence_copy.pop(0)
+                            print(f'Найден правильный пакет: {response},'
+                                  f'оставшиеся для получения: {len(sequence_copy)}')
 
-                    # Если пакет совпадает с ожидаемым элементом последовательности
-                    if packet == sequence[0]:
-                        received_packets.append(packet)
-                        sequence.pop(0)
-                        print(f"Найден правильный пакет, оставшиеся для получения: {len(sequence)}")
+                            if not first_correct_packet:
+                                first_correct_packet = True
+                                start_time = time.time()
 
-                        # Если вся последовательность найдена
-                        if not sequence:
-                            print("Последовательность пакетов успешно найдена!")
-                            return True
+                            if not sequence_copy:
+                                print('Последовательность пакетов успешно найдена!')
+                                return True
                         else:
-                            print(f"Неправильный пакет: {packet}, выкидываем и продолжаем искать.")
-                    else:
-                        print("Буфер пустой, ждем нового пакета.")
+                            print(f'Неправильный пакет, выкидываем и продолжаем искать.')
 
-                except asyncio.TimeoutError:
-                    print("Время ожидания пакета истекло.")
-                    # Сбрасываем прогресс поиска последовательности и начинаем заново
+                if first_correct_packet and (time.time() - start_time > responses_timeout / 1000):
+                    print('Таймер истек, сбрасываем буфер и начинаем поиск заново.')
                     received_packets.clear()
-                    sequence = self.check_sequence.copy()
+                    sequence_copy = original_sequence.copy()
+                    first_correct_packet = False
 
-                    print("Последовательность не найдена.")
-                    return False
+            except asyncio.CancelledError:
+                print('Поиск последовательности был остановлен.')
+                break
 
+            await asyncio.sleep(check_message_interval / 1000)
+
+        return False
 
     def stop(self):
         self.running = False
